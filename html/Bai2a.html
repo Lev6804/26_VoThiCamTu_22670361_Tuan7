@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 2 Nguyen Thanh Trung 22696701</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(()=>{
+            $("#muavao").blur(()=>{
+                var regex=/^[0-9]+$/;
+                var muavaoTxt = $("#muavao").val();
+                if(muavaoTxt!="" && regex.test(muavaoTxt)){
+                    $("#btnState").attr("disabled",false);
+                    return true;
+                }
+                else{
+                    $("#btnState").attr("disabled",true);
+                    return false;
+                }
+            });
+
+           
+            $("#loaixe").change(()=>{
+                var value=$("#loaixe").val();
+                
+                switch(value){
+                    case 'TOYOTA':
+                        $("#imgCar").attr('src','../image/Toyota.png');
+                        $("#priceCar").text(' 35000');
+                        break;
+                    case 'KIA':
+                        $("#imgCar").attr('src','../image/KIA.jpg');
+                        $("#priceCar").text(' 15000');
+                        break;
+                    case 'FORD':
+                        $("#imgCar").attr('src','../image/Ford.jpg');
+                        $("#priceCar").text(' 40000');
+                        break;
+                    case 'CIVIC':
+                        $("#imgCar").attr('src','../image/Civic.jpg');
+                        $("#priceCar").text(' 32000');
+                        break;
+                    case 'FERRARI':
+                        $("#imgCar").attr('src','../image/Ferrari.jpg');
+                        $("#priceCar").text(' 50000');
+                        break;
+                    case 'MERCEDES':
+                        $("#imgCar").attr('src','../image/Mercedes.jpg');
+                        $("#priceCar").text(' 45000');
+                        break;
+                }
+            })
+            
+            $("#btnUpdate").click(()=>{
+                var regex=/^[0-9]+$/;
+                var muavaoTxt = $("#muavao").val();
+                var banraTxt = $("#banra").val();
+
+                if(regex.test(muavaoTxt) && regex.test(banraTxt)){
+                    if($("#gold").is(':checked')){
+                        $("#textMuaGold").text(muavaoTxt);
+                        $("#textBanGold").text(banraTxt);
+                    }
+                    else{
+                        $("#textMuaUSD").text(muavaoTxt);
+                        $("#textBanUSD").text(banraTxt);
+                    }
+                    $("#muavao").val("");
+                    $("#banra").val("");
+                    $("#gold").prop("checked", false);
+                    $("#usd").prop("checked", false);
+                    $("#btnState").attr("disabled",true);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-12 px-0">
+                <img src="../image/Nenb2.png" alt="" class="w-100">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4 px-1">
+                <table class="table table-bordered text-center" border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-primary bg-secondary border-bottom-0 border-3 border-secondary">Bảng tin thị trường</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="text-info bg-secondary border-top-0 border-3 border-secondary">Vàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-info border-3 border-secondary">Mua vào</td>
+                            <td class="text-info border-3 border-secondary">Bán ra</td>
+                        </tr>
+                        <tr>
+                            <td class=" border-3 border-secondary" style="width: 147px; height: 40px;" id="textMuaGold"></td>
+                            <td class=" border-3 border-secondary" style="width: 147px; height: 40px;" id="textBanGold"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="text-info bg-secondary border-3 border-secondary">USD</th>
+                        </tr>
+                        <tr>
+                            <td class="text-info border-3 border-secondary">Mua vào</td>
+                            <td class="text-info border-3 border-secondary">Bán ra</td>
+                        </tr>
+                        <tr>
+                            <td class=" border-3 border-secondary" style="width: 147px; height: 40px;" id="textMuaUSD"></td>
+                            <td class=" border-3 border-secondary" style="width: 147px; height: 40px;" id="textBanUSD"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="row bg-secondary my-1"><h5 class="text-center text-primary" >Cập nhật giá thị trường</h5></div>
+                <div class="row my-1">
+                    <div class="col-4 bg-secondary me-1 text-start align-content-center">
+                        <label for="muavao" class="fw-bold">Mua vào</label>
+                    </div>
+                    <div class="col bg-secondary align-content-start">
+                        <input type="text" id="muavao" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col-4 bg-secondary me-1 text-start align-content-center">
+                        <label for="banra" class="fw-bold">Bán ra</label>
+                    </div>
+                    <div class="col bg-secondary align-content-start">
+                        <input type="text" id="banra" class="form-control">
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col-4 bg-secondary me-1 text-start align-content-center">
+                        <label for="loaixe" class="fw-bold">Loại xe</label>
+                    </div>
+                    <div class="col bg-secondary align-content-start">
+                        <select id="loaixe" class="form-select">
+                            <option value="TOYOTA">Toyata</option>
+                            <option value="KIA">KIA</option>
+                            <option value="FORD">Ford</option>
+                            <option value="CIVIC">Civic</option>
+                            <option value="FERRARI">Ferrari</option>
+                            <option value="MERCEDES">Mercedes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col-4 bg-secondary me-1"></div>
+                    <div class="col bg-secondary align-content-start">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="gold" name="price">
+                                    <label for="gold" class="form-check-label">Vàng</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="usd" name="price">
+                                    <label for="usd" class="form-check-label">USD</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col-4 bg-secondary me-1"></div>
+                    <div class="col bg-secondary align-content-start">
+                        <div class="row">
+                            <div class="col">
+                                <button id="btnUpdate">Update</button>
+                            </div>
+                            <div class="col">
+                                <button disabled id="btnState">State</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 my-1 w-100" style="border: 1px solid black;">
+                <div class="row px-1 w-100">
+                    <h5 class="text-primary text-center bg-secondary p-1 m-0 w-100">Bảng báo giá</h5>
+                </div>
+                <div class="row px-1">
+                    <p class="bg-white border border-2 border-secondary text-primary mb-0 w-100" >
+                        -Với kiểu dáng thể thao, sang trọng<br>
+                        -Nổi bật, ít tốn nhiên liệu<br>
+                        -Kiểu dáng thể thao
+                    </p>
+                </div>
+                <div class="row px-1">
+                    <div class="bg-secondary d-flex justify-content-center">
+                        <img src="../image/Toyota.png" alt="" id="imgCar" width="100%" height="100%">
+                    </div>
+                </div>
+                <div class="row px-1">
+                    <span class="bg-white text-success fw-bold border border-secondary border-2">
+                        Giá:<span id="priceCar"> 3500</span>USD
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
